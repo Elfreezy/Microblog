@@ -1,0 +1,36 @@
+Создания микроблога
+- Pagination
+- Поддержка почты
+- Добавление стилей bootstrap
+- Дата и время
+- I18n и L10n
+last: Улучшение структуры
+
+Что нового:
+- Изменил структуру на blueprints
+- Добавил создание экземпляров приложения (Улучшает тестирование, но приходится прибегать к текущеме приложению в потоке (from flask import current app)).
+Теперь можно создавать несколько экземпляров приложения с разными конфигурациями
+- Изменил тесты (Добавил / Удалил контекст тестового приложения)
+- Добавил .env файл для переменных среды
+
+
+
+Немного о процессе(I18n и L10n): 
+1) Обозначить все переводимые текста в **.py, **.html
+2) Создать файл babel.cfg. Указать в нем все шаблонные файлы и расширения для jinja2
+3) pybabel extract -F babel.cfg -k _l -o messages.pot .
+
+pybabel extract - считывает файл конфигурации
+-F babel.cfg - указывает на файл конфигурации
+-k _l - шаблон, используемый в form.py т.к. там используется lazy gettext
+-o messages.pot - указывает на файл в который все пишется
+. - текущая директория
+
+4) pybabel init -i messages.pot -d translations -l ru
+creating catalog translations/ru/LC_MESSAGES/messages.po based on messages.pot
+
+-d translations - директория
+-l - язык
+
+5) Добавить перевод в файл messages.po
+6) pybabel compile -d translations compiling catalog translations/ru/LC_MESSAGES/messages.po to translations/ru/LC_MESSAGES/messages.mo

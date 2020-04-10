@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+
+{% block app_content %}
+  <h1 class="title">{{_('Hi %(username)s',username=current_user.username)}}</h1>
+  {% if form %}
+  <div>
+    <form action="", method="POST">
+      {{ form.hidden_tag() }}
+        <p>
+          {{ form.post.label() }} <br>
+          {{ form.post(cols=50, rows=4) }}
+        </p>
+        <p>
+          {{ form.submit }}
+        </p>
+    </form>
+  </div>
+  {% endif %}
+
+  <div>
+    {% include '_post.html' %}
+  </div>
+  {% if prev_url %}
+    <a href="{{prev_url}}">{{_('prev')}}</a>
+  {% endif %}
+  {% if next_url %}
+    <a href="{{ next_url }}">{{_('next')}}</a>
+  {% endif %}
+{% endblock %}

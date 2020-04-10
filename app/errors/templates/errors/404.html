@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+
+
+{% block app_content %}
+<h1 class="title">{{_('404 Page Not Found')}}</h1>
+<a href="{{url_for('main.index')}}">{{_('back')}}</a>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% for post in posts %}
+
+<div class="table table-hover">
+  <tr>
+    <td>
+      {%set user_link %}
+      <a href="{{ url_for('main.user', username=post.author.username) }}">
+      {{post.author.username}}</a>
+      {% endset %}
+      {{_('%(username)s said %(when)s:', username=user_link, when=moment(post.timestamp).fromNow())}} <br>
+      {{post.body}}
+    </td>
+  </tr>
+</div>
+
+
+{% endfor %}
